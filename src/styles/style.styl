@@ -1,0 +1,72 @@
+container-height = 720px
+container-padding = 0 10px
+container-width = 600px
+
+event-border-color = #d6d6d6
+event-color = #ffffff
+event-left-border-color = #4b6ea8
+event-left-border-width = 4px
+
+events-border-left-color = #d6d6d6
+events-color = #ececec
+
+time-background = transparent
+time-width = 100px
+
+html
+  box-sizing border-box
+  position relative
+
+body
+  position relative
+
+*, *:before, *:after
+  box-sizing inherit
+
+.calendar-container
+  border 1px dashed rgba(0, 0, 0, 0.2)
+  display block
+  margin 0 auto
+  position relative
+
+.day-view
+  display block
+  margin 0 auto
+  padding 10px
+  position relative
+
+  .calendar-time
+    background time-background
+    display inline-block
+    height container-height
+    position relative
+    width time-width
+
+  .calendar-events
+    background events-color
+    border-left 1px solid events-border-left-color
+    box-sizing content-box
+    display inline-block
+    height container-height
+    margin 0 auto
+    padding container-padding
+    position relative
+    width container-width
+    overflow hidden
+
+    .event
+      box-sizing border-box
+      background event-color
+      border-radius 2px
+      border-left event-left-border-width solid event-left-border-color
+      height 50px
+      overflow hidden
+      position relative
+      width 100%
+
+    .event-inner
+      border-bottom 1px solid event-border-color
+      border-right 1px solid event-border-color
+      border-top 1px solid event-border-color
+      width 100%
+      height 100%
