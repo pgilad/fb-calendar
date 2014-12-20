@@ -1,21 +1,27 @@
+primary-color = #4b6ea8
+secondary-color = #ffffff
+primary-border-color = #d6d6d6
+events-background = #ececec
+
 container-height = 720px
 container-padding = 0 10px
 container-width = 600px
 
-event-border-color = #d6d6d6
-event-color = #ffffff
-event-left-border-color = #4b6ea8
-event-left-border-width = 4px
-
-events-border-left-color = #d6d6d6
-events-color = #ececec
+event-left-border = primary-color solid 4px
+event-location-color = #797979
 
 time-background = transparent
 time-width = 100px
 
+overflow-hidden()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
 html
   box-sizing border-box
   position relative
+  font-size 62.5%
 
 body
   position relative
@@ -43,30 +49,42 @@ body
     width time-width
 
   .calendar-events
-    background events-color
-    border-left 1px solid events-border-left-color
+    background events-background
+    border-left 1px solid primary-border-color
     box-sizing content-box
     display inline-block
     height container-height
     margin 0 auto
+    overflow hidden
     padding container-padding
     position relative
     width container-width
-    overflow hidden
 
     .event
-      box-sizing border-box
-      background event-color
+      background secondary-color
+      border-left event-left-border
       border-radius 2px
-      border-left event-left-border-width solid event-left-border-color
-      height 50px
+      box-sizing border-box
+      height 250px
       overflow hidden
       position relative
       width 100%
 
+      .name
+        color primary-color
+        font-size 2rem
+        margin-bottom 3px
+        overflow-hidden()
+
+      .location
+        color event-location-color
+        font-size 1.5rem
+        overflow-hidden()
+
     .event-inner
-      border-bottom 1px solid event-border-color
-      border-right 1px solid event-border-color
-      border-top 1px solid event-border-color
-      width 100%
+      border-bottom 1px solid primary-border-color
+      border-right 1px solid primary-border-color
+      border-top 1px solid primary-border-color
       height 100%
+      width 100%
+      padding 10px

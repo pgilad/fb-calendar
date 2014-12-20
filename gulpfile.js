@@ -20,6 +20,7 @@ gulp.task('styles', function () {
     return gulp.src('./src/styles/style.styl')
         .pipe($.stylus().on('error', function (err) {
             console.log(err);
+            this.emit('end');
         }))
         .pipe($.autoprefixer())
         .pipe(gulp.dest('./dist/css/'));
