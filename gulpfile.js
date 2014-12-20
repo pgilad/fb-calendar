@@ -12,8 +12,8 @@ gulp.task('jade', function () {
 });
 
 gulp.task('copy', function () {
-    return gulp.src('./src/img/**/*')
-        .pipe(gulp.dest('./dist/img'));
+    return gulp.src('./src/{img,js}/**/*')
+        .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('styles', function () {
