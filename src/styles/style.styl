@@ -7,11 +7,17 @@ container-height = 720px
 container-padding = 0 10px
 container-width = 600px
 
+display-hours = 12
+
 event-left-border = primary-color solid 4px
 event-location-color = #797979
 
 time-background = transparent
-time-width = 100px
+
+time-minor-color = #a7a7a7
+time-major-color = #686868
+
+time-tick-height = (container-height / display-hours / 2)
 
 overflow-hidden()
   overflow hidden
@@ -38,7 +44,7 @@ body
 .day-view
   display block
   margin 0 auto
-  padding 10px
+  padding 20px
   position relative
 
   .calendar-time
@@ -46,15 +52,32 @@ body
     display inline-block
     height container-height
     position relative
-    width time-width
+    vertical-align top
+    padding 0 10px
+
+    .time-tick
+      height time-tick-height
+      line-height time-tick-height
+      text-align right
+
+      .major
+        color time-major-color
+        font-size 2rem
+        display inline-block
+        margin-right 2px
+
+      .minor
+        color time-minor-color
+        font-size 1.5rem
+        display inline-block
 
   .calendar-events
+    margin-top (time-tick-height / 2)
     background events-background
     border-left 1px solid primary-border-color
     box-sizing content-box
     display inline-block
     height container-height
-    margin 0 auto
     overflow hidden
     padding container-padding
     position relative
