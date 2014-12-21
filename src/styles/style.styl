@@ -46,6 +46,7 @@ body
   margin 0 auto
   padding 20px
   position relative
+  white-space nowrap
 
   .calendar-time
     background time-background
@@ -63,13 +64,11 @@ body
       .major
         color time-major-color
         font-size 2rem
-        display inline-block
-        margin-right 2px
+        margin-right 4px
 
       .minor
         color time-minor-color
         font-size 1.5rem
-        display inline-block
 
   .calendar-events
     margin-top (time-tick-height / 2)
@@ -88,7 +87,7 @@ body
       border-left event-left-border
       border-radius 2px
       box-sizing border-box
-      height 250px
+      height 120px
       overflow hidden
       position relative
       width 100%
