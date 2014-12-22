@@ -33,6 +33,26 @@ var calendarApp = function ($, $container) {
         return _config;
     })();
 
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function generateRandom() {
+        var dummyRandom = [];
+        var amount = getRandomInt(1, 20);
+        for (var i = 0; i < amount; ++i) {
+            var start = getRandomInt(1, 720);
+            var end = getRandomInt(1, 720);
+            if (end - start > 15) {
+                dummyRandom.push({
+                    start: start,
+                    end: end
+                });
+            }
+        }
+        return dummyRandom;
+    }
+
     function getPrettyTime(time) {
         var hours = Math.floor(time);
         // return time using the American system
@@ -120,6 +140,9 @@ var calendarApp = function ($, $container) {
 
     function drawEvents(events) {
         var html = events.map(function (event) {
+            if (event.disabled) {
+                return;
+            }
             var $elm = $(getRenderedEvent(event));
             $elm.css({
                 height: event.height,
@@ -228,8 +251,13 @@ var calendarApp = function ($, $container) {
     }
 
     function layOutDay(events) {
+        // reset collision group
+        collisionGroups.length = 0;
+
+        $eventsContainer.find('.inner').empty();
         if (!events || !events.length) {
             console.debug('Whoa, this must be your day off...');
+            return events;
         }
         // sort events by start time
         events.sort(sortByStart);
@@ -237,8 +265,8 @@ var calendarApp = function ($, $container) {
         // iterate events building the collisions groups and setting general props
         events.forEach(function (event, index) {
             if (event.start > event.end) {
-                console.warn('Oh no, the impossible happened, a bad event! Hiding it...', event);
-                event.left = event.right = event.top = event.height = 0;
+                console.warn('Oh no, the impossible has happened, a bad event! Hiding it...', event);
+                event.disabled = true;
                 return;
             }
             event.height = getEventHeight(event);
@@ -260,12 +288,15 @@ var calendarApp = function ($, $container) {
             });
         });
         drawEvents(events);
+        return events;
     }
 
     return {
         setupDay: setupDay,
         layOutDay: layOutDay,
-        config: config
+        config: config,
+        // exposed mainly for test purposes
+        generateRandom: generateRandom
     };
 };
 
